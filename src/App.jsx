@@ -1,66 +1,41 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
 import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   const notifySuccess = () => {
-    toast.success('¡Contador actualizado con éxito!')
+    toast.success('¡Operación exitosa!', {
+      position: 'top-right',
+      autoClose: 3000,
+    })
   }
 
   const notifyError = () => {
-    toast.error('¡Ocurrió un error!')
+    toast.error('¡Ocurrió un error!', {
+      position: 'top-right',
+      autoClose: 3000,
+    })
   }
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
+    <div className="flex flex-col items-center justify-center bg-primary-400 text-white font-primary min-h-screen text-center px-4">
+      <h1 className="text-4xl font-bold text-blue-600 mb-6">Prueba de Tailwind + Toastify</h1>
 
-      <div className="card">
+      <div className="flex gap-4">
         <button
-          onClick={() => {
-            setCount((prev) => prev + 1)
-            notifySuccess()
-          }}
+          onClick={notifySuccess}
+          className="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded"
         >
-          count is {count}
+          Mostrar Éxito
         </button>
 
         <button
           onClick={notifyError}
-          style={{
-            marginTop: '1rem',
-            padding: '0.5rem 1rem',
-            backgroundColor: '#dc2626',
-            color: '#fff',
-            border: 'none',
-            borderRadius: '0.5rem',
-            cursor: 'pointer',
-          }}
+          className="bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-4 rounded"
         >
-          Simular Error
+          Mostrar Error
         </button>
-
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
       </div>
-
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    </div>
   )
 }
 
