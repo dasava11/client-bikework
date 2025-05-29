@@ -1,35 +1,24 @@
-import { useState, useEffect } from "react"
-import axios from "axios"
+import { useStores } from "../../hooks/useStores";
 
 export const GridHome = () => {
-  const [stores, setStores] = useState([])
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(null)
+  const { stores, loading, error } = useStores();
 
-  const URL = "/api"
-
-  useEffect(() => {
-    const fetchStores = async () => {
-      setLoading(true)
-      try {
-        const response = await axios.get(URL)
-        setStores(response.data)
-        console.log(response.data);
-      } catch (error) {
-        setError(error.message)
-        console.error("Error fetching stores:", error)
-        alert("Error fetching stores: " + error.message)
-      } finally {
-        setLoading(false)
-      } 
-    }
-    
-    fetchStores()
-  }, []);
+  if (loading) return <p className="text-primary-600">Cargando tiendas...</p>;
+  if (error) return <p className="text-error-500">Error: {error}</p>;
+  if (stores.length === 0)
+    return <p className="text-gray-500">No hay tiendas disponibles.</p>;
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      
+      {stores.map((store) => (
+        <div
+          key={store.id}
+          className="p-4 rounded-lg shadow-md bg-white text-black"
+        >
+          <h3 className="font-bold text-lg">{store.name}</h3>
+          <p className="text-sm text-gray-600">{store.description}</p>
+        </div>
+      ))}
     </div>
-  )
-}
+  );
+};
