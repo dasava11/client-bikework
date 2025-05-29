@@ -1,0 +1,17 @@
+# Usa una imagen base de Node.js
+FROM node:18-alpine
+
+# Crea y usa la carpeta /app dentro del contenedor
+WORKDIR /app
+
+# Copia solo package.json y package-lock.json para instalar dependencias
+COPY package*.json ./
+
+# Instala las dependencias
+RUN npm install
+
+# Expone el puerto de Vite (5173)
+EXPOSE 5173
+
+# Comando por defecto para desarrollo
+CMD ["npm", "run", "dev"]
