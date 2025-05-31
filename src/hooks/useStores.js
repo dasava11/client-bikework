@@ -14,6 +14,7 @@ export const useStores = () => {
       setLoading(true);
       try {
         const data = await fetchStores();
+         console.log('entra 2');
         if (isMounted) setStores(data);
       } catch (err) {
         if (isMounted) {
@@ -26,6 +27,7 @@ export const useStores = () => {
     };
 
     loadStores();
+   
 
     return () => {
       isMounted = false;

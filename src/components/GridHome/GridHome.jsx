@@ -3,6 +3,8 @@ import { useStores } from "../../hooks/useStores";
 export const GridHome = () => {
   const { stores, loading, error } = useStores();
 
+  console.log('renderizado')
+
   if (loading) return <p className="text-primary-600">Cargando tiendas...</p>;
   if (error) return <p className="text-error-500">Error: {error}</p>;
   if (stores.length === 0)

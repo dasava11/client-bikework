@@ -7,6 +7,7 @@ import "./index.css";
 import clsx from "clsx";
 
 createRoot(document.getElementById("root")).render(
+  
   <StrictMode>
     <App />
     <ToastContainer
