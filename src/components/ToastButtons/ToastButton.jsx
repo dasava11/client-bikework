@@ -1,12 +1,13 @@
 import { toast } from "react-toastify";
 import clsx from "clsx";
 
-export const ToastButton = ({ label, type, message, themeColor }) => {
-  const showToast = () => {
+export const ToastButton = ({ label, type, message, themeColor, onClick }) => {
+  const showToast = (e) => {
     toast[type](message, {
       position: "top-right",
       autoClose: 3000,
     });
+     if (onClick) onClick(e);
   };
   const baseClasses =
     "text-white font-bold py-2 px-4 rounded transition-colors duration-200";
@@ -30,3 +31,13 @@ export const ToastButton = ({ label, type, message, themeColor }) => {
     </button>
   );
 };
+
+
+ {/* Al importar en otro componente así se pasarian las props: 
+         <ToastButton
+          label="Confirmar"
+          type="success"
+          message="¡Operación exitosa!"
+          themeColor="success"
+        /> 
+  */}

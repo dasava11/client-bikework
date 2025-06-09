@@ -5,12 +5,16 @@ import "react-toastify/dist/ReactToastify.css";
 import App from "./App.jsx";
 import "./index.css";
 import clsx from "clsx";
+import { AuthProvider } from "./context/authContext.jsx";
+import { BrowserRouter } from "react-router-dom";
 
 createRoot(document.getElementById("root")).render(
   
   <StrictMode>
-    <App />
-    <ToastContainer
+    <BrowserRouter>
+    <AuthProvider>
+      <App />
+      <ToastContainer
       position="top-right"
       autoClose={3000}
       hideProgressBar={false}
@@ -28,10 +32,12 @@ createRoot(document.getElementById("root")).render(
             "bg-error-500 text-white": context?.type === "error",
             "bg-warning-500 text-black": context?.type === "warning",
             "bg-primary-500 text-white":
-              context?.type === "default" || context?.type === "info",
+            context?.type === "default" || context?.type === "info",
           }
         )
       }
-    />
+      />
+    </AuthProvider>
+    </BrowserRouter>
   </StrictMode>
 );

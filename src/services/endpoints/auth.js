@@ -1,5 +1,5 @@
-const AUTH_BASE_URL = import.meta.env.VITE_API_AUTH_BASE_URL;
+const AUTH_BASE_URL = import.meta.env.VITE_API_GET_USER;
 
 export const auth = {
-  login: `${AUTH_BASE_URL}/login`,
+  login: (uuid) => `${AUTH_BASE_URL}${uuid}`,
 };
