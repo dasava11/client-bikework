@@ -1,9 +1,10 @@
 import { useStores } from "../../hooks/useStores";
+import CardStore from "../CardStore/CardStore";
 
 export const GridHome = () => {
   const { stores, loading, error } = useStores();
 
-  console.log('renderizado')
+  console.log(stores)
 
   if (loading) return <p className="text-primary-600">Cargando tiendas...</p>;
   if (error) return <p className="text-error-500">Error: {error}</p>;
@@ -13,13 +14,7 @@ export const GridHome = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       {stores.map((store) => (
-        <div
-          key={store.id}
-          className="p-4 rounded-lg shadow-md bg-white text-black"
-        >
-          <h3 className="font-bold text-lg">{store.name}</h3>
-          <p className="text-sm text-gray-600">{store.description}</p>
-        </div>
+        <CardStore key={store.id} store={store} />
       ))}
     </div>
   );

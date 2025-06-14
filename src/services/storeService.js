@@ -9,6 +9,6 @@ export const fetchStores = async () => {
   if (!response.data || !Array.isArray(response.data)) {
     throw new Error("Datos de tiendas no válidos");
   }
-  console.log('entra 1');
+  console.log(response.data);
   return response.data;
 };
