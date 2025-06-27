@@ -1,4 +1,4 @@
-import { apiClient } from "./apiClient"; // Axios configurado con baseURL, interceptors, etc.
+import { apiClient } from "./apiClient"; 
 import { endpoints } from "./endpoints";
 
 export const fetchStores = async () => {
@@ -12,3 +12,20 @@ export const fetchStores = async () => {
   console.log(response.data);
   return response.data;
 };
+
+export const fetchStoreById = async (storeId) => {
+  if (!storeId) {
+    throw new Error("ID de tienda no encontrado");
+  }
+  const response = await apiClient.get(endpoints.getByStoreId(storeId));
+
+  if (response.status !== 200) {
+    throw new Error(`API error: ${response.statusText}`);
+  }
+  if (!response.data) {
+    throw new Error("Datos de tienda no válidos");
+  }
+  
+  console.log(response.data);
+  return response.data;
+}

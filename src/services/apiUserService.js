@@ -4,6 +4,9 @@ import { endpoints } from "./endpoints";
 
 export const getUserByUUID = async (uuid) => {
     try {
+         const url = endpoints.login(uuid); // 👈 construyes la URL
+    console.log("🔍 URL que se va a consumir:", url); // 👈 la imprimes en consola
+
         const response = await apiUser.get(endpoints.login(uuid));
         if (!response ) {
             throw new Error("No se recibió respuesta del servidor");

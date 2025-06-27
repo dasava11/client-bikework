@@ -1,4 +1,4 @@
-import { useStores } from "../../hooks/useStores";
+import { useStores } from "../../hooks/useStoreHooks";
 import CardStore from "../CardStore/CardStore";
 
 export const GridHome = () => {
